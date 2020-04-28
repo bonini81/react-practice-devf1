@@ -3,21 +3,63 @@ import axios from 'axios';
 
 
 export default class Libros extends Component {
-    
 
-  manejarSubmit = () => {
-    const jsonSend = this.state;
-    const URL = 'https://pokeapi.co/api/v2/pokemon/3/';
-    axios.post(URL, jsonSend)
-      .then(res => alert('¡Artículo creado!'))
-      .catch(err => alert('Error al crear artículo'))
+
+  state = {
+    
+    libros: [],
   };
+    
+  // El componente se montó
+  componentDidMount() {
+    const URL = 'http://openlibrary.org/search.json?author=asimov';
+    axios.get(URL)
+      .then(response => {
+        console.log('Oops i did it again...' , response.data);
+        const libros = response.data;
+        this.setState({ libros });
+        //console.log(libros.docs.length);    
+        //console.log(libros.docs[0].title_suggest);
+      })
+      .catch(err => console.log(err));
+  }
+
+
+//Hi
+
+displayLibrosApi() {
+  const { libros } = this.state;
+   
+  if (libros.length === 0) {
+    console.log("Hello 0 man");
+    return <span>Cargando libros Madafaka...</span>;
+
+  } else if (libros.docs.length > 0) {
+
+    return (
+     
+      <React.Fragment>
+          
+        <p>Se encontraron: {libros.docs.length}</p>
+      
+        {libros.map(libro => {
+           return (
+            <p>{`Libros: ${libro.docs.title_suggest}`}</p>
+            )
+          })}
+      </React.Fragment>
+    )
+  }
+}
+
 
     render() {
         return (
+          <React.Fragment>
             <div>
-                
+                {  this.displayLibrosApi() }
             </div>
+            </React.Fragment>
         )
     }
 }

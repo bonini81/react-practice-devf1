@@ -26,6 +26,7 @@ export default class Home extends Component {
                         <div className="col-md-2 borde-adb">
 
                         <h3>Libros</h3>
+                        <Libros />
                         </div>
                      </div>
                      </div> 
