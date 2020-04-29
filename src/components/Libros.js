@@ -35,16 +35,17 @@ displayLibrosApi() {
     return <span>Cargando libros Madafaka...</span>;
 
   } else if (libros.docs.length > 0) {
-
+    console.log(libros);
     return (
+    
      
       <React.Fragment>
           
         <p>Se encontraron: {libros.docs.length}</p>
       
-        {libros.map(libro => {
+        {libros.docs.map(libro => {
            return (
-            <p>{`Libros: ${libro.docs.title_suggest}`}</p>
+            <p>{`Libros: ${libro.title_suggest}`}</p>
             )
           })}
       </React.Fragment>
