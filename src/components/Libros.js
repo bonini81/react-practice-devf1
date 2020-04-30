@@ -42,7 +42,7 @@ displayLibrosApi() {
       <React.Fragment>
           
         <p>Se encontraron: {libros.docs.length}</p>
-      
+     
         {libros.docs.map(libro => {
            return (
             <p>{`Libros: ${libro.title_suggest}`}</p>
